@@ -24,7 +24,6 @@
 		            if(depart_arr[i].parentid==0){
 		                var pnode=depart_arr[i];
 		                depart_arr[i].grade=$scope.grade;//设置根节点的等级为0;
-		                $scope.datas.push(depart_arr[i]);//根节点入组;
 		                depart_arr.splice(i,1);
 		                break;
 		            }
@@ -55,6 +54,9 @@
 
 		    //迭代函数树数组转化为普通数组
 		    function tree_to_arry(data){
+		    	
+		        $scope.datas.push(data);//根节点入组;
+
 		    	for(var i=0;i<data.length;i++){
 		    		$scope.datas.push(data[i]);
 		    		if(data[i].children.length!=0){
