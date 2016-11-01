@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<div ng-app="app" ng-controller="myController"></div>
+<body>
+    <script type="text/javascript" src="assets/angular.js"></script>
+    <script type="text/javascript">
+	var myapp = angular.module('app',[]).controller('myController', function($scope, $rootScope, $http) {
+		    $http.get('/js/data.json').success(function(res){
+		        var depart_arr=res;
+		        for(var i=0;i<depart_arr.length;i++){
+		            if(depart_arr[i].parentid==0){
+		                var pnode=depart_arr[i];
+		                depart_arr.splice(i,1);
+		                break;
+		            }
+		        }
+		        var datas=constree(pnode,depart_arr);
+		        console.log(datas)
+		    })
+		    function constree(root,departs){
+		        root.children=[];
+		        for(var i=0;i<departs.length;i++){
+		            if(root.classid==departs[i].parentid){
+		                root.children.push(constree(departs[i],departs));
+		            }
+		        }
+		        return root;
+		    }
+		});
+
+    </script>
+</body>
+</html>
