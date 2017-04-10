@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>study</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<style type="text/css">
+	body{
+		/*设置默认字体*/
+		font-family:Helvetica;
+	}
+	input,button{
+		/*清除圆角及其他默认样式*/
+		-webkit-appearance:none;
+		border-radius: 0;
+		/*清除点击阴影*/
+		-webkit-tap-highlight-color:rgba( 0, 0, 0, 0);
+		/*清除选中文字背景（部分手机不起作用，再事件章节处理）*/
+		-webkit-user-select:none;
+		/*清除文字缩放(横竖屏、手机调整字体）*/
+		-webkit-text-size-adjust: 100%;
+		/*font Boosting:包含文字的元素未设置height时，也许只给了line-height属性，出现字体比较大的情况
+		解决办法：
+		1、设置height
+		2、max-height,如不能确定高度时设置
+		*/
+		/*fix (事件中解决)
+		解决办法：
+		1、设置height
+		2、max-height,如不能确定高度时设置
+		*/
+		/*清除页面默认滚动条*/
+		html{
+			height:100%;
+			overflow: hidden;
+			/*position:relative,相对与html定位出现横向滚动条，通过相对于body（overflow:hidden）定位，在外层再包一层解决*/
+		}
+		body{
+			height:100%;
+			overflow: hidden;
+			margin:0;
+			position: relative;
+		}
+		#wrap{
+			position: relative;
+
+		}
+		/*使用绝对定位模拟解决，但存在问题需要js解决*/
+		header{
+			height:200px;
+			width: 100%;
+			background: #000;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+
+	}
+	/*适配
+	1、百分比适配，宽度100%，高度只能用具体值
+	2、viewport适配(缩放窗口比例)
+	3、rem适配
+	4、弹性盒模型（box flex适配）
+	*/
+	
+</style>
+<script type="text/javascript">
+//把所有屏幕的宽度设置成一直
+	$(function(){
+		var w=window.screen.width;
+		var targetW=320;
+		var scale=w/targetW;//当前尺寸除目标尺寸
+		var meta=document.createElement('meta');
+		meta.name='viewport';
+		meta.content="user-scalable=no,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale="+scale+"";
+		document.head.appendChild(meta);
+	})
+	// 怪异盒模型
+	box-sizing:border-box;
+</script>
+</head>
+<body>
+    
+</body>
+</html>
